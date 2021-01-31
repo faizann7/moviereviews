@@ -27,7 +27,9 @@ function App() {
       console.log("worked");
     }
     
-  
+  const deleteReview = (movie) => {
+    Axios.delete(`http://localhost:3001/api/delete/${movie}`); 
+  }
 
 
   return (
@@ -54,9 +56,17 @@ function App() {
 
         {movieReviewList.map((val)=>{
           return (
-            <p>
-              MovieName: {val.movieName} || Movie Review: {val.movieReview}
-            </p>
+            <div className="card">
+              <h1>{val.movieName}</h1>
+              <p>{val.movieReview}</p>
+
+              <button onClick={() =>{deleteReview(val.movieName)}}>Delete</button>
+              <input type="text" id="updateInput"/>
+              <button>Update</button>
+            </div>
+            // <p>
+            //   MovieName: {val.movieName} || Movie Review: {val.movieReview}
+            // </p>
           )
         })}
 

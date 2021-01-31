@@ -15,18 +15,17 @@
   width: 300px;
   height: 60px;
   margin: 10px;
+  font-size: 25px;
 }
 
-
-
-.card {
-  
+.card{
   align-items: center;
   justify-content: center;
   width: 500px;
-  height: 170px;
+  height: 220px;
+  border: 2px solid black;
   border-radius: 15px;
-  
+  margin: 10px;
 }
 
 #updateInput{
