@@ -18,11 +18,16 @@ function App() {
     Axios.post("http://localhost:3001/api/insert", {
       movieName: movieName,
       movieReview: review,
-    }).then(()=>{
-      alert('successfully insert');
     })
-    console.log("worked");
-  }
+
+    setMovieList([...movieReviewList, 
+        {movieName: movieName, movieReview: review},
+      ])
+    
+      console.log("worked");
+    }
+    
+  
 
 
   return (
