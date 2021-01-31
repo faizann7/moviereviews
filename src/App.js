@@ -7,6 +7,7 @@ function App() {
   const [movieName, setMovieName] = useState("");
   const [review, setreview] = useState("");
   const [movieReviewList, setMovieList] = useState([]);
+  const [newReview, setNewReview] = useState([]);
 
   useEffect(()=>{
     Axios.get("http://localhost:3001/api/get").then((response) =>{
@@ -29,6 +30,14 @@ function App() {
     
   const deleteReview = (movie) => {
     Axios.delete(`http://localhost:3001/api/delete/${movie}`); 
+  }
+
+  const updateReview = (movie) => {
+    Axios.put("http://localhost:3001/api/update", {
+      movieName: movie,
+      movieReview: newReview,
+    });
+    setNewReview("")
   }
 
 
@@ -61,8 +70,10 @@ function App() {
               <p>{val.movieReview}</p>
 
               <button onClick={() =>{deleteReview(val.movieName)}}>Delete</button>
-              <input type="text" id="updateInput"/>
-              <button>Update</button>
+              <input type="text" id="updateInput" onChange={(e) =>{
+                setNewReview(e.target.value)
+              }} />
+              <button onClick={()=>{ updateReview(val.movieName)}} >Update</button>
             </div>
             // <p>
             //   MovieName: {val.movieName} || Movie Review: {val.movieReview}
